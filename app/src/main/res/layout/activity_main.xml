@@ -6,12 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:src="@drawable/ic_img_tomato_stem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/remainMinutesTextView" />
+
     <TextView
         android:id="@+id/remainMinutesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="00"
-        android:textSize="40sp"
+        android:text="00'"
+        android:textColor="@color/white"
+        android:textSize="120sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/remainSecondsTextView"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -24,7 +35,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="00"
-        android:textSize="40sp"
+        android:textColor="@color/white"
+        android:textSize="70sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@id/remainMinutesTextView"
         app:layout_constraintBottom_toBottomOf="@id/remainMinutesTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/remainMinutesTextView"
@@ -36,9 +50,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:max="60"
+        android:layout_marginHorizontal="20dp"
+        android:progressDrawable="@color/transparent"
+        android:thumb="@drawable/ic_baseline_unfold_less_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/remainMinutesTextView" />
+        app:layout_constraintTop_toBottomOf="@id/remainMinutesTextView"
+        app:tickMark="@drawable/drawable_tick_mark" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

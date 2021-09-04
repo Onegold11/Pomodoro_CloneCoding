@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Sound
      */
-    private val soundPool = SoundPool.Builder().build()
+    private var soundPool = SoundPool.Builder().build()
 
     /**
      * Ticking sound id
@@ -105,16 +105,30 @@ class MainActivity : AppCompatActivity() {
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
 
-                currentCountDownTimer?.cancel()
-                currentCountDownTimer = null
+                stopCountDown()
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
 
                 seekBar ?: return
-                startCountDown()
+
+                if (seekBar.progress == 0) {
+                    stopCountDown()
+                } else {
+                    startCountDown()
+                }
             }
         })
+    }
+
+    /**
+     * Stop timer
+     */
+    private fun stopCountDown() {
+
+        currentCountDownTimer?.cancel()
+        currentCountDownTimer = null
+        soundPool.autoPause()
     }
 
     /**
@@ -170,7 +184,7 @@ class MainActivity : AppCompatActivity() {
 
         val remainSeconds = remainMillis / 1000
 
-        this.remainMinutesTextView.text = "%02d".format(remainSeconds / 60)
+        this.remainMinutesTextView.text = "%02d'".format(remainSeconds / 60)
         this.remainSecondsTextView.text = "%02d".format(remainSeconds % 60)
     }
 
